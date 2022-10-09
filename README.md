@@ -1,1 +1,1 @@
-# The code will be available upon collation.
+# The code will be available upon received.
