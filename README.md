@@ -8,4 +8,4 @@
 
 ## Get Started
 
-Using the ```train.py``` to train the model on your own dataset, where ```ML_mode``` controls whether add the synthetic noise. 
+Using the ```Train.py``` to train the model on your own dataset, where ```ML_mode``` controls whether add the synthetic noise. 
