@@ -23,8 +23,8 @@ parser.add_argument("--batch_size", type=int, default=2, help="size of the batch
 parser.add_argument("--meta_batch_size", type=int, default=5, help="size of the meta-learning mini-batch")
 parser.add_argument("--outer_step_size", type=float, default=0.1)
 parser.add_argument("--ML_mode", type=int, default=1, help="0: None, 1: GT with noise")
-parser.add_argument("--n_epochs", type=int, default=401, help="number of epochs of training")
-parser.add_argument("--n_FT_epochs", type=int, default=401, help="number of finetune epochs of training")
+parser.add_argument("--n_epochs", type=int, default=201, help="number of epochs of training")
+parser.add_argument("--n_FT_epochs", type=int, default=201, help="number of finetune epochs of training")
 parser.add_argument("--img_size", type=int, default=512, help="resize the image size")
 parser.add_argument("--checkpoint_interval", type=int, default=10, help="interval between model checkpoints")
 parser.add_argument("--train_data_path", type=str, default="", help="path of data for training")
@@ -93,8 +93,8 @@ def train():
     # --------------
     for epoch in range(opt.n_epochs):
         # 16 Noise
-        Tasks = ["Gau0.02", "Gau0.03", "Gau0.04", "Gau0.05", "Gau0.06", "Gau0.07", "Gau0.08", "Gau0.09",
-                "GP0.02", "GP0.03", "GP0.04", "GP0.05", "GP0.06", "GP0.07", "GP0.08", "GP0.09"]
+        Tasks = ["Ray10", "Ray20", "Ray30", "Ray40", "Ray50", "Ray60", "Ray70", "Ray80",
+                "RP10", "RP20", "RP30", "RP40", "RP50", "RP60", "RP70", "RP80"]
         for j, task in enumerate(Tasks):
             train_dataloader = DataLoader(
                 ImageDataset_Train(opt.train_data_path, transforms_=transforms_, task_flag=task, ML_mode=opt.ML_mode),
@@ -160,7 +160,7 @@ def train():
                     loss_G.item(), loss_MSE.item(), loss_L1.item(), loss_D.item(), time_left))
                     
     # save model after meta-training
-    torch.save(generator.state_dict(), "./saved_models/G_Meta_Train_Done_8Gau8GP.pth")
+    torch.save(generator.state_dict(), "./saved_models/G_Meta_Train_Done_8Ray8RP.pth")
     
     # load model of meta-training
     #generator.load_state_dict(torch.load(opt.model_save_path))
