@@ -16,20 +16,23 @@ class ImageDataset_Train(Dataset):
 
     def add_noise(self, image, noise_mode):
         # -----------
-        # Ray10 Ray20 Ray30 Ray40 Ray50 Ray60 Ray70 Ray80
-        # RP10 RP20 RP30 RP40 RP50 RP60 RP70 RP80
+        # Ray20 Ray30 Ray40 Ray50 Ray60 Ray70 Ray80 Ray90
+        # RP20 RP30 RP40 RP50 RP60 RP70 RP80 RP90
         # -----------
         n_mode = noise_mode[:-2]
         Ray_sigma = noise_mode[-2:]
+        image = image.astype(np.float32) / 255.0
         if n_mode == "Ray":
-            noise = np.random.rayleigh(scale=int(Ray_sigma), size=image.shape)
-            noise_img = image + noise
-            noise_img = np.clip(noise_img, 0, 255).astype(np.uint8)
+            rayleigh_noise1 = np.random.rayleigh(scale=0.1, size=image.shape)
+            rayleigh_noise2 = np.random.rayleigh(scale=(Ray_sigma/100), size=image.shape)
+            noise_img = (image + rayleigh_noise1) * rayleigh_noise2
+            noise_img = np.clip(noise_img * 255, 0, 255).astype(np.uint8)
         elif n_mode == "RP":
-            noise = np.random.rayleigh(scale=int(Ray_sigma), size=image.shape)
+            rayleigh_noise1 = np.random.rayleigh(scale=0.1, size=image.shape)
+            rayleigh_noise2 = np.random.rayleigh(scale=(Ray_sigma/100), size=image.shape)
             noise_p = np.random.poisson(image)
-            noise_img = image + noise + noise_p
-            noise_img = np.clip(noise_img, 0, 255).astype(np.uint8)
+            noise_img = (image + rayleigh_noise1 + noise_p) * rayleigh_noise2
+            noise_img = np.clip(noise_img * 255, 0, 255).astype(np.uint8)
         
         noisy_PIL = Image.fromarray(noise_img)
 
