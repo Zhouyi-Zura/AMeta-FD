@@ -93,8 +93,8 @@ def train():
     # --------------
     for epoch in range(opt.n_epochs):
         # 16 Noise
-        Tasks = ["Ray10", "Ray20", "Ray30", "Ray40", "Ray50", "Ray60", "Ray70", "Ray80",
-                "RP10", "RP20", "RP30", "RP40", "RP50", "RP60", "RP70", "RP80"]
+        Tasks = ["Ray20", "Ray30", "Ray40", "Ray50", "Ray60", "Ray70", "Ray80", "Ray90",
+                 "RP20", "RP30", "RP40", "RP50", "RP60", "RP70", "RP80", "RP90"]
         for j, task in enumerate(Tasks):
             train_dataloader = DataLoader(
                 ImageDataset_Train(opt.train_data_path, transforms_=transforms_, task_flag=task, ML_mode=opt.ML_mode),
