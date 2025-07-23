@@ -20,7 +20,7 @@ class ImageDataset_Train(Dataset):
         # RP20 RP30 RP40 RP50 RP60 RP70 RP80 RP90
         # -----------
         n_mode = noise_mode[:-2]
-        Ray_sigma = noise_mode[-2:]
+        Ray_sigma = float(noise_mode[-2:])
         image = image.astype(np.float32) / 255.0
         if n_mode == "Ray":
             rayleigh_noise1 = np.random.rayleigh(scale=0.1, size=image.shape)

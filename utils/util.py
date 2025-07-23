@@ -7,8 +7,8 @@ def sigmoid(x):
     return 1/(1+np.exp(-x))
 
 def normalization(data):
-    _range = np.max(data) - np.min(data)
-    return (data - np.min(data)) / (_range + 1e-10)
+    _range = torch.max(data) - torch.min(data)
+    return (data - torch.min(data)) / (_range + 1e-10)
 
 class SSI_Loss(nn.Module):
     def __init__(self):
