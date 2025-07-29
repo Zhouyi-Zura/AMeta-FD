@@ -19,8 +19,11 @@ If you use this code for your research, please cite our papers.
   title={AMeta-FD: Adversarial Meta-learning for Few-shot retinal OCT image Despeckling},
   author={Zhou, Yi and Peng, Tao and Ahmed, Thiara Sana and Shi, Fei and Zhu, Weifang and Xiang, Dehui and Schmetterer, Leopold and Jiang, Jianxin and Tan, Bingyao and Chen, Xinjian},
   journal={Computerized Medical Imaging and Graphics},
+  volume = {124},
   pages={102597},
   year={2025},
+  issn = {0895-6111},
+  doi = {https://doi.org/10.1016/j.compmedimag.2025.102597},
   publisher={Elsevier}
 }
 ```
